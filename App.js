@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from './constants/styles'
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
+import * as SplashScreen from 'expo-splash-screen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import IconButton from './components/UI/IconButton';
 import { useContext, useEffect, useState } from 'react';
@@ -78,6 +79,12 @@ function Root() {
 
     fetchToken()
   }, [])
+
+  if (isTryingLogin) {
+    SplashScreen.preventAutoHideAsync();
+  } else {
+    SplashScreen.hideAsync();
+  }
 
   return <Navigation />
 }
